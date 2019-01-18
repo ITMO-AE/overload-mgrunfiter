@@ -1,24 +1,12 @@
 #include <iostream>
+#include <sstream>
+#include "rational.h"
+
 using namespace std;
 
-class Rational {
-public:
-    Rational() {}
-
-    Rational(int numerator, int denominator) { }
-
-    int Numerator() const {}
-
-    int Denominator() const {}
-
-private:
-
-};
-
-int main() {
-   
+int main()
+{
     // проверка работы интерфейса класса ======================================
-
     {
         const Rational r(3, 10);
         if (r.Numerator() != 3 || r.Denominator() != 10) {
@@ -66,11 +54,8 @@ int main() {
             return 5;
         }
     }
-
     //end проверка работы интерфейса класса ===================================
-
     // проверка работы operator+ operator- operator== =========================
-
     {
         Rational r1(4, 6);
         Rational r2(2, 3);
@@ -102,13 +87,8 @@ int main() {
             return 3;
         }
     }
-
-
     //end проверка работы operator+ operator- operator== ======================
-
-
     // проверка работы operator* operator/  ===================================
-
     {
         Rational a(2, 3);
         Rational b(4, 3);
@@ -130,10 +110,7 @@ int main() {
             return 2;
         }
     }
-
     //end проверка работы operator* operator/  ================================
-
-
     // проверка работы operator>> operator<<  =================================
 
      {
@@ -142,6 +119,17 @@ int main() {
         if (output.str() != "-3/4") {
             cout << "Rational(-6, 8) should be written as \"-3/4\"" << endl;
             return 1;
+        }
+    }
+
+    {
+        istringstream input("5/7");
+        Rational r;
+        input >> r;
+        bool equal = r == Rational(5, 7);
+        if (!equal) {
+            cout << "5/7 is incorrectly read as " << r << endl;
+            return 2;
         }
     }
 
@@ -174,10 +162,7 @@ int main() {
             return 4;
         }
     }
-
     //end проверка работы operator>> operator<<  ==============================
-
-
     cout << "OK" << endl;
     return 0;
 }
